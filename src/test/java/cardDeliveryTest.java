@@ -20,21 +20,17 @@ public class cardDeliveryTest {
     void shouldSubmitForm() {
         open("http://localhost:9999");
         $("[data-test-id='city'] input").setValue("Симферополь");
-//        $(byText("Симферополь")).shouldBe(exist);
-//        String currentDate = generateDate(6,"dd.MM.yyyy");
         String planningDate = generateDate(12, "dd.MM.yyyy");
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
         $("[data-test-id='date'] input").setValue(planningDate);
         $("[data-test-id='name'] input").setValue("Петров Иван");
         $("[data-test-id='phone'] input").setValue("+79850002542");
         $("[data-test-id='agreement']").click();
-        $("button.button").click();
+        $(".button").click();
         $(".notification__content")
                 .shouldBe(visible, Duration.ofSeconds(15))
                 .shouldHave(exactText("Встреча успешно забронирована на " + planningDate));
 
 
     }
-
-
 }
